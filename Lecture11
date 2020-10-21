@@ -1,0 +1,251 @@
+package Lecture11;
+
+public class Student {
+	
+	static int count;
+	int  count2=0;
+	final int count3=11;
+	int i;
+	
+	//attributes
+	int roll_no; //0
+	String name; //null
+	char grade;//'0'
+	int marks; //0
+//	Node head
+//	Node tail
+//	this.head;
+//	this.tail
+//  this()
+	
+	
+	//constructors
+	//default constructor
+	public Student(){
+		
+	}
+	
+	//paramterised constructor
+	public Student(int roll_no, String name, Character grade)
+	{
+		this.roll_no=roll_no;
+		this.name=name;
+		this.grade=grade;
+		
+		
+	}
+	public Student(int mark)
+	{
+		marks=mark;
+	}
+	
+	//methods
+	
+	public static void increment()
+	{
+		count++;
+//		count2++;
+		System.out.println(count);
+//		System.out.println(count2);
+		
+		//ABC-->DEF
+		//static String company="ABC";
+		
+	}
+
+	//static keyword
+	// static attributes
+	//static functions
+	
+	//final keyword
+	//class final-> cannot be extended
+	//method final-> cannot be overriden
+	
+	public static int func()
+	{
+		return 2;
+	}
+	
+	//this
+	public static void main(String[] args) {
+		
+	
+		func();
+		
+	   	Student s1= new Student(); //default
+	 
+		s1.roll_no=1;
+		s1.name="mahima";
+		s1.grade='A';
+//		s1.count3=100;
+		Student s2= new Student(2,"abc",'B'); //parameterised
+		
+		Student s3= new Student(10);
+		
+//		s1.increment();//0 1
+//		s2.increment();//0 1
+//		s3.increment();//0 1
+		System.out.println(Student.count);
+		Student.increment();
+	
+				
+	}
+
+}
+
+
+package Lecture11;
+
+public class Human {
+	int age;
+	
+	public void breathe()
+	{
+		System.out.println("Breathing");
+	}
+
+}
+
+package Lecture11;
+
+public class Employee extends Human {
+	
+	int salary;
+	int eid;
+	
+	public void work()
+	{
+		System.out.println("working");
+	}
+	
+	public static void main(String[] args) {
+		
+		Employee e= new Employee();
+		e.eid=1;
+		e.salary=2000;
+		e.work();
+		e.breathe();
+		e.age=32;
+		
+		
+	}
+
+}
+package Lecture11;
+
+public class Manager extends Employee {
+	
+	int manager_bonus;
+	
+	public void manage()
+	{
+		System.out.println("managing");
+	}
+	
+	public static void main(String[] args) {
+		
+		Manager m= new Manager();
+		m.manager_bonus=1000;
+		m.manage();
+		m.work();
+		m.breathe();
+	}
+
+}
+package Lecture11;
+
+public class Animal {
+	public void eat()
+	{
+		System.out.println("eating like an animal!!");
+		
+	}  
+
+}
+
+
+//Animal{
+//cat
+//dog
+//elephant
+//}
+
+//Car-> Vehicle, Thing
+
+
+package Lecture11;
+
+public class Cat extends Animal{
+	
+	public void meow()
+	{
+		System.out.println("Meowing");
+	}
+	
+	public static void main(String[] args) {
+		Cat c= new Cat();
+		c.meow();
+		c.eat();
+	}
+
+}
+
+package Lecture11;
+
+public class Dog extends Animal {
+	
+	public void bark()
+	{
+		System.out.println("Barking");
+	}
+	
+	//volume(int r, int d)
+	//volume(int d)
+	
+	//method overriding
+	
+	public void eat()
+	{
+		System.out.println("Eating like a DOG!!");
+	}
+	
+	public static void main(String[] args) {
+		Dog d= new Dog();
+		d.bark();
+		d.eat();
+		//super.eat(10)
+	}
+
+}
+
+
+package Lecture11;
+
+//public class MultDemo extends Mult1,Mult2 {
+	
+	
+	
+
+//}
+package Lecture11;
+
+public class Mult1 {
+	
+	public void tell()
+	{
+		System.out.println("I am the best!!");
+	}
+
+}
+package Lecture11;
+
+public class Mult2 {
+	
+	public void tell()
+	{
+		System.out.println("I am the worst!!");
+	}
+
+	
+
+}
