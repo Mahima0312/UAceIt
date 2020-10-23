@@ -1,0 +1,351 @@
+package Lecture12;
+
+public class This_Demo {
+	
+	//to get attribtes
+	//to get functions
+	// to act as a constructor
+	
+	
+	//default
+	
+	public This_Demo()
+	{
+		
+	}
+	//parameterised
+	public This_Demo(String msg)
+	{
+		//this for constructor
+		this();
+		//xyz
+		System.out.println(msg);
+	}
+	int att1;
+	int att2;
+	int age;
+	String name;
+	//this-> talking about current class
+	//this();
+	
+	public void set(int att1, int att2)
+	{
+		//this for attributes
+		this.att1=att1;
+		this.att2= att2;
+	}
+	public void msg()
+	{
+		System.out.println("Hi");
+	}
+//	public static void set(int att1, int att2)
+//	{
+//		//this for attributes
+//		this.att1=att1;
+//		this.att2= att2;
+//	}
+	public void get(int newatt1, int newatt2)
+	{
+		//this for functions
+		this.set(newatt1, newatt2);
+		this.msg();
+		System.out.println(att1+" "+att2);
+	}
+	
+	
+	
+	public static void main(String[] args) {
+		
+		This_Demo object= new This_Demo();
+		object.set(2,5);
+
+	}
+
+}
+package Lecture12;
+
+public class Super_Demo_Child extends Super_Demo_Parent {
+	
+	public Super_Demo_Child()
+	{
+		super(); //calling the default constructor of super class->parent class
+		
+	}
+	int age_child = super.age;
+	public void eat()
+	{
+		super.eat();
+		msg();
+	}
+//	public static void eat()
+//	{
+//		super.eat();
+//	}
+	
+	//static keyword: cannot use super 
+	
+	
+	public static void main(String[] args) {
+		
+		Super_Demo_Child obj= new Super_Demo_Child();
+		
+		
+		
+		
+	}
+
+}
+package Lecture12;
+
+public class Super_Demo_Parent {
+	
+	public Super_Demo_Parent()
+	{
+		System.out.println("Parent object is created");
+	}
+	
+	int age;
+	String name;
+	
+	public void eat()
+	{
+		System.out.println("eating...");
+	}
+	public void msg()
+	{
+		System.out.println("Hi...");
+	}
+//	public static void eat()
+//	{
+//		System.out.println("eating...");
+//	}
+
+}
+package Lecture12;
+
+public abstract class Secret {
+	//hidden methods
+	//normal methods
+	
+	public abstract int run();
+	public abstract void encrypt();
+	public abstract void decrypt();
+	
+	//Admin class calculate(), find() , Administrator extends Admin
+	
+	public void message(String msg)
+	{
+		System.out.println(msg);
+	}
+
+}
+package Lecture12;
+
+public class Mission extends Secret {
+
+	@Override
+	public int run() {
+		// TODO Auto-generated method stub
+		return 10;
+	}
+
+	@Override
+	public void encrypt() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void decrypt() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	//body deni hi padegi!!!!!
+	
+
+}
+package Lecture12;
+
+public class Mission2 extends Secret{
+
+	@Override
+	public int run() {
+		// TODO Auto-generated method stub
+		return 20;
+	}
+
+	@Override
+	public void encrypt() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void decrypt() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}
+package Lecture12;
+
+
+//interface-> blueprint
+//abstraction-> hide the implementation
+
+public interface FirstInterface {
+	
+	public static void run()
+	{
+		System.out.println("Running!");
+	}
+	
+	public void print();
+	public void show();
+	public void tell();
+	
+	public static void main(String[] args) {
+		
+		run();
+		
+	}
+	
+
+}
+package Lecture12;
+
+public interface SecondInterface {
+	
+	public void print();
+	public void msg();
+	public void tell();
+	
+	
+
+}
+package Lecture12;
+//abstract class-> extend
+
+//class and you have an interface-> "implements" not "extends"
+//multiple inheritance:::: interfaces
+
+public class MyInterfaceClass implements FirstInterface,SecondInterface{
+
+	public static void main(String[] args) {
+		
+		MyInterfaceClass obj= new MyInterfaceClass();
+		obj.print();
+		obj.show();
+		
+	}
+
+	@Override
+	public void msg() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void print() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void show() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void tell() {
+		// TODO Auto-generated method stub
+		System.out.println("I am the best!");
+		
+	}
+
+	public void run() {
+		//body
+		//body	
+	}
+	
+
+}
+package Lecture12;
+
+public class EncapTest {
+
+	public static void main(String[] args){
+		//String[] args-> command line arguments
+		//String-> array -> args
+		//parameters which help the compiler to find and run the main method
+		//JVM 
+		Encap1 obj= new Encap1();
+		obj.setAge(10);
+		obj.setName("aakash");
+		
+		System.out.println(obj.getName()+" "+obj.getAge());
+	}
+	
+	//EncapTest.main()
+	
+}
+package Lecture12;
+
+public class Encap1 {
+	
+	private int age;
+	private String name;
+	
+	
+	//getters and setters
+	public void setAge(int age)
+	{
+		this.age=age;
+		
+	}
+	public int getAge()
+	{
+		return this.age;
+		
+	}
+	
+	public void setName(String name)
+	{
+		this.name=name;
+		
+	}
+	public String getName()
+	{
+		return this.name;
+	}
+
+}
+
+
+
+//UPCASTING EXAMPLE:
+class Bank{  
+float getRateOfInterest(){return 0;}  
+}  
+class SBI extends Bank{  
+float getRateOfInterest(){return 8.4f;}  
+}  
+class ICICI extends Bank{  
+float getRateOfInterest(){return 7.3f;}  
+}  
+class AXIS extends Bank{  
+float getRateOfInterest(){return 9.7f;}  
+}  
+class TestPolymorphism{  
+public static void main(String args[]){  
+Bank b;  
+b=new SBI();  
+System.out.println("SBI Rate of Interest: "+b.getRateOfInterest());  
+b=new ICICI();  
+System.out.println("ICICI Rate of Interest: "+b.getRateOfInterest());  
+b=new AXIS();  
+System.out.println("AXIS Rate of Interest: "+b.getRateOfInterest());  
+}  
+}  
