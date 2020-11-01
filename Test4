@@ -1,0 +1,221 @@
+//Question 1 : Recursion Reverse
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner scn= new Scanner(System.in);
+        int size= scn.nextInt();
+        Queue<Integer> q= new LinkedList<>();
+        for(int i=0;i<size;i++)
+            q.add(scn.nextInt());
+        Queue<Integer> reversedq= reverseQueue(q);
+        print(reversedq);
+       
+    }
+    public static void print(Queue<Integer> q) { 
+        while (!q.isEmpty())  
+        { 
+            System.out.print(q.peek() + " "); 
+            q.remove(); 
+        } 
+    } 
+    public static Queue<Integer> reverseQueue(Queue<Integer> q) { 
+    // Base case 
+    if (q.isEmpty()) 
+        return q; 
+  
+    int data = q.peek(); 
+    q.remove(); 
+  
+   //revere remaining
+    q = reverseQueue(q); 
+  
+   
+    q.add(data); 
+          
+    return q; 
+    } 
+}
+
+//Question 1 End
+
+//Question 2: Permutations 
+
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner scn= new Scanner(System.in);
+        String s= scn.next();
+        String t= scn.next();
+        ArrayList<String> solution= findPermutations(s);
+        if(solution.contains(t))
+            System.out.println("True");
+        else
+            System.out.println("False");
+    }
+    public static ArrayList<String> findPermutations(String s)
+    {
+        //baseCase -> empty string
+        if(s.length()==0)
+        {
+            ArrayList<String> basecase= new ArrayList<>();
+            basecase.add("");//c-> c, b->b,
+            return basecase;
+        }
+        
+        //break the problem
+        char characterAtHand = s.charAt(0); //a
+        String restOfTheString= s.substring(1); //"bc"
+        ArrayList<String> biggerResult= new ArrayList<>(); //final result arraylist
+        
+         ArrayList<String> smallerResult= findPermutations(restOfTheString); //bc ke permutations--->"bc","cb" 
+         
+         for(String val: smallerResult)
+         {
+             for(int i=0;i<=val.length();i++)
+             {
+                 //"bc" ->"bac"  //bca   
+                 String ans= val.substring(0,i)+characterAtHand+val.substring(i);
+                 biggerResult.add(ans); //c//b//a
+             }
+         }
+         
+         return biggerResult;
+    }
+}
+
+//Question 2 ENd
+
+
+//Question 3: Maximum Element
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner scn= new Scanner(System.in);
+        int noq= scn.nextInt();
+        Stack<Integer> stack= new Stack<>();
+        Stack<Integer> largeststack= new Stack<>();
+        largeststack.push(Integer.MIN_VALUE);
+      
+        while(noq!=0)
+        {
+            int type= scn.nextInt();
+            if(type==1)
+            {
+                int num= scn.nextInt();
+                stack.push(num);
+                if(stack.peek()>=largeststack.peek())
+                largeststack.push(stack.peek());
+
+
+            }else if(type==2)
+            {
+                if(largeststack.peek()==stack.peek())
+                largeststack.pop();
+                stack.pop();
+               
+
+            }else{
+                System.out.println(largeststack.peek());
+
+            }
+            noq--;
+
+        }
+    }
+    public static int findmax(Stack<Integer> stack)
+    {
+        Stack<Integer> helper= new Stack<>();
+        int max= 0;
+        if(!stack.isEmpty())
+        max=  stack.peek();
+        while(!stack.isEmpty())
+        {
+            helper.push(stack.pop());
+            if(!stack.isEmpty())
+            max= Math.max(max,stack.peek());
+
+        }
+        while(!helper.isEmpty())
+        {
+            stack.push(helper.pop());
+        }
+
+        return max;
+    }
+}
+// Question 3 End
+
+//Question 4: Equal Stacks
+
+    static int equalStacks(int[] h1, int[] h2, int[] h3) {
+        Stack<Integer> stack1= new Stack<>();
+        Stack<Integer> stack2= new Stack<>();
+        Stack<Integer> stack3= new Stack<>();
+        int sum1=0; int sum2=0; int sum3=0;
+        for(int i=h1.length-1;i>=0;i--){
+        sum1+= h1[i];
+        stack1.push(sum1);
+        }
+         for(int i=h2.length-1;i>=0;i--){
+        sum2+= h2[i];
+        stack2.push(sum2);
+        }
+         for(int i=h3.length-1;i>=0;i--){
+        sum3+= h3[i];
+        stack3.push(sum3);
+        }
+        while(true)
+        {
+            
+            if(stack1.isEmpty() || stack2.isEmpty()|| stack3.isEmpty())
+            return 0;
+            sum1=stack1.peek(); sum2=stack2.peek(); sum3= stack3.peek();
+            if(sum1==sum2&& sum2==sum3)
+            return sum1;
+            if(sum1>=sum2 && sum1>=sum3)
+            {
+                stack1.pop();
+            }
+            else if(sum2>=sum1 && sum2>=sum3)
+            stack2.pop();
+            else if(sum3>=sum1 && sum3>=sum2)
+            stack3.pop();
+        }
+     
+    }
+
+
+//Question 4 End
+
+//Question 5: 
+
+
+    // Complete the superDigit function below.
+    static int superDigit(String n, int k) {
+        if(n.length()>1)
+        {
+            long sum=0;
+            for(int i=0;i<n.length();i++)
+            {
+                sum+= Character.getNumericValue(n.charAt(i));
+            }
+            return superDigit(Long.toString(sum*k),1);
+
+        }else{
+            return Character.getNumericValue(n.charAt(0));
+        }
+       
+    }
+
+//Question 5 End
